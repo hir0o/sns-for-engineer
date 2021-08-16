@@ -1,7 +1,6 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import { useFetch } from '../hooks/useFetch'
-import replaceToHtml from '../lib/replacer'
 import { Post } from '../types'
 import FeedItem from './FeedItem'
 

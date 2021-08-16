@@ -1,10 +1,10 @@
 import React, { VFC, useState, useEffect } from 'react'
 import Header from './components/Header'
-import Feed from './components/Feed'
 import './grobal.css'
-import ContentContainer from './components/ContentContainer'
 import { User, Users } from './types'
 import { useFetch } from './hooks/useFetch'
+import Routes from './Routes'
+import Layouts from './components/Layouts'
 
 export const UsersContext = React.createContext<Users>({})
 
@@ -33,9 +33,9 @@ const App: VFC = () => {
   return (
     <UsersContext.Provider value={users}>
       <Header />
-      <ContentContainer>
-        <Feed />
-      </ContentContainer>
+      <Layouts>
+        <Routes />
+      </Layouts>
     </UsersContext.Provider>
   )
 }
