@@ -25,7 +25,9 @@ const Feed: VFC = () => {
 }
 
 const StyledFeed = styled.div`
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 `
 
 export default Feed
