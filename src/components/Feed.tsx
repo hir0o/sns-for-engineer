@@ -17,8 +17,8 @@ const Feed: VFC = () => {
 
   return (
     <StyledFeed>
-      {data.map(({ text, id }) => (
-        <FeedItem text={text} id={id} key={id} />
+      {data.map(({ text, id, _user_id }) => (
+        <FeedItem text={text} id={id} _user_id={_user_id} key={id} />
       ))}
     </StyledFeed>
   )

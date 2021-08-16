@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/sanitize-html": "^2.3.2",
+    "jdenticon": "^3.1.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "sanitize-html": "^2.4.0",
