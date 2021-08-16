@@ -25,9 +25,10 @@ const App: VFC = () => {
       }
     })
     setUsers(tmpUsers)
-  }, [])
+  }, [data])
 
-  if (!data) return <p>userが取得できませんでした。</p>
+  if (error) return <p>投稿が取得できませんでした。</p>
+  if (!data) return <p>locading...</p>
 
   return (
     <UsersContext.Provider value={users}>
