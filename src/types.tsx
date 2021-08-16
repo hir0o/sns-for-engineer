@@ -14,3 +14,10 @@ export type User = {
   description: string
   name: string
 } & Common
+
+export type Users = {
+  [id: string]: {
+    description: string
+    name: string
+  }
+}
