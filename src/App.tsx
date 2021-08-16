@@ -8,7 +8,7 @@ import { useFetch } from './hooks/useFetch'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-export const UsersContext = React.createContext<Users>([])
+export const UsersContext = React.createContext<Users>({})
 
 const App: VFC = () => {
   const { data, error, isValidating } = useFetch<User[]>(

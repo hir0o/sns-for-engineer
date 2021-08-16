@@ -3,14 +3,12 @@ import styled from 'styled-components'
 import replaceToHtml from '../lib/replacer'
 import { toSvg } from 'jdenticon'
 import { Post, User } from '../types'
-import { useFetch } from '../hooks/useFetch'
 import { useContext } from 'react'
 import { UsersContext } from '../App'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
 type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
-
 type SingleUser = Pick<User, 'name' | 'description'>
 
 const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
