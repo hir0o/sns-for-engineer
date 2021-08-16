@@ -1,13 +1,16 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import ContentContainer from './ContentContainer'
+import { Link, BrowserRouter as Router } from 'react-router-dom'
 
 const Header: VFC = () => {
   return (
     <StyledHeader>
       <ContentContainer className="header__inner">
-        <h1>SNS for Engenner</h1>
-        <a href="#">user</a>
+        <h1>
+          <Link to="/">SNS for Engenner</Link>
+        </h1>
+        <Link to="/mypage">mypage</Link>
       </ContentContainer>
     </StyledHeader>
   )

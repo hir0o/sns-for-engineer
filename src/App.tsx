@@ -5,6 +5,7 @@ import { User, Users } from './types'
 import { useFetch } from './hooks/useFetch'
 import Routes from './Routes'
 import Layouts from './components/Layouts'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 export const UsersContext = React.createContext<Users>({})
 
@@ -31,12 +32,14 @@ const App: VFC = () => {
   }
 
   return (
-    <UsersContext.Provider value={users}>
-      <Header />
-      <Layouts>
-        <Routes />
-      </Layouts>
-    </UsersContext.Provider>
+    <Router>
+      <UsersContext.Provider value={users}>
+        <Header />
+        <Layouts>
+          <Routes />
+        </Layouts>
+      </UsersContext.Provider>
+    </Router>
   )
 }
 

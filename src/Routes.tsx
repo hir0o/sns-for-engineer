@@ -5,16 +5,14 @@ import MyPage from './pages/MyPage'
 
 const Routes: VFC = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/mypage">
-          <MyPage />
-        </Route>
-        <Route path="/">
-          <Top />
-        </Route>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/">
+        <Top />
+      </Route>
+      <Route path="/mypage">
+        <MyPage />
+      </Route>
+    </Switch>
   )
 }
 
