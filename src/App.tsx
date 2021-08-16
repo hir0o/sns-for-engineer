@@ -1,12 +1,10 @@
-import React, { VFC } from 'react'
+import React, { VFC, useState, useEffect } from 'react'
 import Header from './components/Header'
 import Feed from './components/Feed'
 import './grobal.css'
 import ContentContainer from './components/ContentContainer'
 import { User, Users } from './types'
 import { useFetch } from './hooks/useFetch'
-import { useState } from 'react'
-import { useEffect } from 'react'
 
 export const UsersContext = React.createContext<Users>({})
 
@@ -27,8 +25,10 @@ const App: VFC = () => {
     setUsers(tmpUsers)
   }, [data])
 
-  if (error) return <p>投稿が取得できませんでした。</p>
-  if (!data) return <p>locading...</p>
+  if (!data) {
+    if (isValidating) return <p>Loading</p>
+    return <p>Feedを取得できませんでした。</p>
+  }
 
   return (
     <UsersContext.Provider value={users}>
