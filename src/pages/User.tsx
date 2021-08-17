@@ -7,6 +7,8 @@ const User: VFC = () => {
   const { userId } = useParams<{ userId: string }>()
   const user = useUser(userId)
 
+  if (!user) return <h1>Userが見つかりませんでした。</h1>
+
   return (
     <StyledUser>
       <h1>id: {user?.name}</h1>

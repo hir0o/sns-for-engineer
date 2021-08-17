@@ -2,8 +2,8 @@ import React, { VFC } from 'react'
 import styled from 'styled-components'
 import replaceToHtml from '../lib/replacer'
 import { toSvg } from 'jdenticon'
-import { Post, User } from '../types'
-import { useContext } from 'react'
+import { Post } from '../types'
+import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 
 type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
@@ -21,7 +21,13 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
           }}
         />
         <div className="feed-item__user">
-          <p className="feed-item__user-name">{user ? user.name : '未登録'}</p>
+          <p className="feed-item__user-name">
+            {user ? (
+              <Link to={`/users/${_user_id}`}>{user.name}</Link>
+            ) : (
+              '未登録'
+            )}
+          </p>
           <p className="feed-item__time">3分前</p>
         </div>
       </div>
