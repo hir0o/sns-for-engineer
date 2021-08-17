@@ -55,7 +55,7 @@ const StyledFeedItem = styled.div`
   .feed-item__user-img {
     > svg {
       border-radius: 5px;
-      border: 1px solid #3e3e3e;
+      border: 1px solid #d8e0e3;
     }
   }
   .feed-item__user {
