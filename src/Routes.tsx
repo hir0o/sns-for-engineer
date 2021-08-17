@@ -4,8 +4,7 @@ import Top from './pages/Top'
 import MyPage from './pages/MyPage'
 import User from './pages/User'
 
-const Routes: VFC = () => {
-  return (
+const Routes: VFC = () => (
     <Switch>
       <Route exact path="/">
         <Top />
@@ -18,6 +17,5 @@ const Routes: VFC = () => {
       </Route>
     </Switch>
   )
-}
 
 export default Routes

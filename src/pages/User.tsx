@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import { VFC } from 'react'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 import Feed from '../components/Feed'
@@ -6,7 +6,7 @@ import { useFetch } from '../hooks/useFetch'
 import { useUser } from '../hooks/useUser'
 import { Post } from '../types'
 
-const User: VFC = () => {
+const User: VFC = ({}) => {
   const { userId } = useParams<{ userId: string }>()
   const user = useUser(userId)
   const { data, isValidating } = useFetch<Post[]>(

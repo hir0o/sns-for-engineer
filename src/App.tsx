@@ -16,7 +16,7 @@ const App: VFC = () => {
   const [users, setUsers] = useState<Users>({})
 
   useEffect(() => {
-    let tmpUsers: Users = {}
+    const tmpUsers: Users = {}
     data?.forEach((item) => {
       tmpUsers[item.id] = {
         name: item.name,
@@ -28,6 +28,7 @@ const App: VFC = () => {
 
   if (!data) {
     if (isValidating) return <p>Loading</p>
+
     return <p>Feedを取得できませんでした。</p>
   }
 

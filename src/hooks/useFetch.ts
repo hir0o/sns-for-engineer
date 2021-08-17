@@ -8,10 +8,12 @@ async function fetcher<T>(url: string): Promise<T> {
     error.message = data.message
     throw error
   }
+
   return res.json()
 }
 
 export function useFetch<T>(apiPath: string, configuration?: SWRConfiguration) {
   const result = useSWR<T, { message: string }>(apiPath, fetcher, configuration)
+
   return result
 }

@@ -6,13 +6,11 @@ type Props = {
   children: ReactNode
 }
 
-const Layouts: FC<Props> = ({ children }) => {
-  return (
+const Layouts: FC<Props> = ({ children }) => (
     <StyledLayouts>
       <ContentContainer>{children}</ContentContainer>
     </StyledLayouts>
   )
-}
 
 const StyledLayouts = styled.div`
   padding-top: 32px;

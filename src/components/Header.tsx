@@ -1,10 +1,9 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import ContentContainer from './ContentContainer'
 import { Link, BrowserRouter as Router } from 'react-router-dom'
+import ContentContainer from './ContentContainer'
 
-const Header: VFC = () => {
-  return (
+const Header: VFC = () => (
     <StyledHeader>
       <ContentContainer className="header__inner">
         <h1>
@@ -14,7 +13,6 @@ const Header: VFC = () => {
       </ContentContainer>
     </StyledHeader>
   )
-}
 
 const StyledHeader = styled.header`
   .header__inner {

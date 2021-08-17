@@ -1,8 +1,7 @@
-import React, { VFC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
-import { useFetch } from '../hooks/useFetch'
+import './FeedItem'
 import { Post } from '../types'
-import FeedItem from './FeedItem'
 
 type Props = {
   data: Post[] | undefined
@@ -12,6 +11,7 @@ type Props = {
 const Feed: VFC<Props> = ({ data, isValidating }) => {
   if (!data) {
     if (isValidating) return <p>Loading</p>
+
     return <p>Feedを取得できませんでした。</p>
   }
 

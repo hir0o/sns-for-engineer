@@ -1,9 +1,9 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import replaceToHtml from '../lib/replacer'
 import { toSvg } from 'jdenticon'
-import { Post } from '../types'
 import { Link } from 'react-router-dom'
+import replaceToHtml from '../lib/replacer'
+import { Post } from '../types'
 import { useUser } from '../hooks/useUser'
 
 type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
