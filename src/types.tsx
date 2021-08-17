@@ -21,3 +21,5 @@ export type Users = {
     name: string
   }
 }
+
+export type SingleUser = Pick<User, 'name' | 'description'>

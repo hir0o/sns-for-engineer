@@ -4,20 +4,12 @@ import replaceToHtml from '../lib/replacer'
 import { toSvg } from 'jdenticon'
 import { Post, User } from '../types'
 import { useContext } from 'react'
-import { UsersContext } from '../App'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useUser } from '../hooks/useUser'
 
 type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
-type SingleUser = Pick<User, 'name' | 'description'>
 
 const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
-  const users = useContext(UsersContext)
-  const [user, setUser] = useState<SingleUser>({} as SingleUser)
-
-  useEffect(() => {
-    setUser(users[_user_id])
-  }, [])
+  const user = useUser(_user_id)
 
   return (
     <StyledFeedItem>
