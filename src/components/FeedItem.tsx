@@ -81,6 +81,7 @@ const StyledFeedItem = styled.div`
   .feed-item__text {
     width: 100%;
     margin-top: 12px;
+    word-break: break-all;
   }
 `
 
