@@ -5,9 +5,7 @@ export default function useLocalStorage<T>(
 ): [T, (data: T) => void] {
   const [value, setStoredValue] = useState<T>(() => {
     const str = localStorage.getItem(storageKey)
-    if (!str) {
-      return undefined
-    }
+    if (!str) return undefined
     try {
       return JSON.parse(str)
     } catch (e) {
