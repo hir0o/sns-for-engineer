@@ -1,6 +1,6 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import './FeedItem'
+import FeedItem from './FeedItem'
 import { Post } from '../types'
 
 type Props = {

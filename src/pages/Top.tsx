@@ -1,11 +1,11 @@
-import React, { VFC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
-import Feed from '../components/Feed'
 import { useFetch } from '../hooks/useFetch'
 import { Post } from '../types'
+import Feed from '../components/Feed'
 
 const Top: VFC = () => {
-  const { data, error, isValidating } = useFetch<Post[]>(
+  const { data, isValidating } = useFetch<Post[]>(
     'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=20'
   )
 

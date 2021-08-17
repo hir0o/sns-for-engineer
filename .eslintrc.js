@@ -29,7 +29,10 @@ module.exports = {
   root: true,
   rules: {
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: false, variables: true },
+    ],
     'lines-between-class-members': [
       'error',
       'always',
@@ -86,9 +89,8 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
-    'no-use-before-define': 'off',
-    'no-use-before-define': ['error', { functions: false, classes: false }],
-    camelcase: ['error', { properties: 'false' }],
+    camelcase: 'off',
+    'no-cycle': 'off',
   },
   overrides: [
     {

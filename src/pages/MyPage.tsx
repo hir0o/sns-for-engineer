@@ -1,4 +1,4 @@
-import React, { useCallback, VFC , useEffect , useState } from 'react'
+import { useCallback, VFC, useState } from 'react'
 import styled from 'styled-components'
 import useIp from '../hooks/useIp'
 import useLocalStorage from '../hooks/useLocalStorage'
