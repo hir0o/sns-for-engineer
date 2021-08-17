@@ -4,15 +4,18 @@ import { useFetch } from '../hooks/useFetch'
 import { Post } from '../types'
 import FeedItem from './FeedItem'
 
-const Feed: VFC = () => {
-  const { data, error, isValidating } = useFetch<Post[]>(
-    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=20'
-  )
+type Props = {
+  data: Post[] | undefined
+  isValidating: boolean
+}
 
+const Feed: VFC<Props> = ({ data, isValidating }) => {
   if (!data) {
     if (isValidating) return <p>Loading</p>
     return <p>Feedを取得できませんでした。</p>
   }
+
+  if (data.length === 0) return <p>投稿はまだありません。</p>
 
   return (
     <StyledFeed>
