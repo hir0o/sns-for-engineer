@@ -6,15 +6,12 @@ import useIp from '../hooks/useIp'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { User } from '../types'
 
+type SingleUser = Pick<User, 'name' | 'description' | 'id'>
+
 const MyPage: VFC = () => {
   const ip = useIp()
-  const [user, setUser] = useState(
-    {} as Pick<User, 'name' | 'description' | 'id'>
-  )
-  const { get, set } = useLocalStorage('123user')
-  useEffect(() => {
-    setUser(get())
-  }, [])
+
+  const [user, setUser] = useLocalStorage<SingleUser>('123user')
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -33,9 +30,9 @@ const MyPage: VFC = () => {
         }),
       }
     )
-    set({ name, description })
+    setUser({ name, description, id: 'hoge' })
     console.log(res)
-  }, [name, description, set])
+  }, [name, description])
 
   return (
     <StyledMyPage>
