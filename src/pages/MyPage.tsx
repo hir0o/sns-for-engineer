@@ -17,21 +17,17 @@ const MyPage: VFC = () => {
   const [description, setDescription] = useState('')
 
   const hunleSubmit = useCallback(async () => {
-    const res = await fetch(
-      'https://versatileapi.herokuapp.com/api/user/create_user',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          description,
-        }),
-      }
-    )
+    await fetch('https://versatileapi.herokuapp.com/api/user/create_user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    })
     setUser({ name, description, id: 'hoge' })
-    console.log(res)
   }, [name, description])
 
   return (

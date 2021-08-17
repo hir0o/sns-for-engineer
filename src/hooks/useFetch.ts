@@ -1,13 +1,7 @@
 import useSWR, { SWRConfiguration } from 'swr'
 
-async function fetcher<T>(url: string, data?: object): Promise<T> {
-  const res = await fetch(url, {
-    method: data ? 'POST' : 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
+async function fetcher<T>(url: string): Promise<T> {
+  const res = await fetch(url)
   if (!res.ok) {
     const error = new Error('An error occurred while fetching the data.')
     const data = await res.json()
