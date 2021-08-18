@@ -7,6 +7,7 @@ import { SingleUser } from '../../types'
 import MyPageContents from '../../components/MyPageContents'
 import { useState } from 'react'
 import loading from '../../assets/img/loading.svg'
+import { post } from '../../lib/post'
 
 type FormValues = {
   name: string
@@ -22,20 +23,14 @@ const Edit: VFC = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     SetIsSending(true)
     try {
-      const { id } = await fetch(
+      const { id } = await post<{ id: string }>(
         'https://versatileapi.herokuapp.com/api/user/create_user',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      ).then((res) => res.json())
+        data
+      )
       setUser({ ...data, id })
       history.push('/mypage')
     } catch (e) {
-      alert('ユーザー情報の更新ができませんでした。')
+      alert('送信に失敗しました。')
     }
     SetIsSending(false)
   }
