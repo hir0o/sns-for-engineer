@@ -12,28 +12,7 @@ type SingleUser = Pick<User, 'name' | 'description' | 'id'>
 const MyPage: VFC = () => {
   const ip = useIp()
 
-  const [user, setUser] = useLocalStorage<SingleUser>('123user')
-
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-
-  const hunleSubmit = useCallback(async () => {
-    const { id } = await fetch(
-      'https://versatileapi.herokuapp.com/api/user/create_user',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          description,
-        }),
-      }
-    ).then((res) => res.json())
-
-    setUser({ name, description, id })
-  }, [name, description])
+  const [user, _] = useLocalStorage<SingleUser>('123user')
 
   return (
     <StyledMyPage>
@@ -61,23 +40,6 @@ const MyPage: VFC = () => {
           </div>
         </div>
       </div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          hunleSubmit()
-        }}
-      >
-        送信
-      </button>
     </StyledMyPage>
   )
 }

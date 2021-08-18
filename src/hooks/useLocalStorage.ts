@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 
 export default function useLocalStorage<T>(
   storageKey: string
-): [T, (data: T) => void] {
+): [T | undefined, (data: T) => void] {
   const [value, setStoredValue] = useState<T>(() => {
     const str = localStorage.getItem(storageKey)
     if (!str) return undefined
