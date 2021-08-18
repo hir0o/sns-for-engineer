@@ -12,7 +12,7 @@ type FormValues = {
 
 const Top: VFC = () => {
   const { data, error, isValidating } = useFetch<Post[]>(
-    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=20'
+    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=50'
   )
 
   const { register, handleSubmit, setValue } = useForm()

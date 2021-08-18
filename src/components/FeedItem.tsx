@@ -5,10 +5,11 @@ import { Post } from '../types'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import ProfileImage from './ProfileImage'
+import FeedItemReply from './FeedItemReply'
 
-type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
+type Prps = Post
 
-const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
+const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
   const user = useUser(_user_id)
 
   return (
@@ -32,12 +33,16 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
       </div>
       <div className="feed-item__content">
         <div className="feed-item__content-space" />
-        <div
-          className="feed-item__text"
-          dangerouslySetInnerHTML={{
-            __html: replaceToHtml(text),
-          }}
-        />
+        <div className="feed-item__text">
+          {in_reply_to_text_id && (
+            <FeedItemReply replyId={in_reply_to_text_id} />
+          )}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: replaceToHtml(text),
+            }}
+          />
+        </div>
       </div>
     </StyledFeedItem>
   )
