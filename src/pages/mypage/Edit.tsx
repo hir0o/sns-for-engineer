@@ -1,8 +1,7 @@
-import React, { useCallback, useState, VFC } from 'react'
+import React, { VFC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import { cache } from 'swr'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { SingleUser } from '../../types'
 
