@@ -5,7 +5,7 @@ import { Post } from '../types'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import ProfileImage from './ProfileImage'
-import FeedItemReply from './FeedItemReply'
+import FeedItemReply from './FeedReply'
 
 type Prps = Post & {
   modal?: boolean

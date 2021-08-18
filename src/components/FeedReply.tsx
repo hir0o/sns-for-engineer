@@ -3,13 +3,13 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { useFetch } from '../hooks/useFetch'
 import { Post } from '../types'
-import FeedItemModal from './FeedItemModal'
+import FeedModal from './FeedModal'
 
 type Props = {
   replyId: string
 }
 
-const FeedItemReply: VFC<Props> = ({ replyId }) => {
+const FeedReply: VFC<Props> = ({ replyId }) => {
   const { data } = useFetch<Post>(
     `https://versatileapi.herokuapp.com/api/text/${replyId}`
   )
@@ -20,19 +20,19 @@ const FeedItemReply: VFC<Props> = ({ replyId }) => {
 
   return (
     <>
-      <StyledFeedItemReply
+      <StyledFeedReply
         onClick={() => {
           setModalOpen(true)
         }}
       >
-        <p className="feed-item-reply__text">{data.text}</p>
-      </StyledFeedItemReply>
-      {modalOpen && <FeedItemModal setModalOpen={setModalOpen} data={data} />}
+        <p className="feed-reply__text">{data.text}</p>
+      </StyledFeedReply>
+      {modalOpen && <FeedModal setModalOpen={setModalOpen} data={data} />}
     </>
   )
 }
 
-const StyledFeedItemReply = styled.button`
+const StyledFeedReply = styled.button`
   width: 100%;
   background-color: transparent;
   text-align: left;
@@ -42,7 +42,7 @@ const StyledFeedItemReply = styled.button`
   position: relative;
   margin-top: 12px;
   margin-bottom: 12px;
-  .feed-item-reply__text {
+  .feed-reply__text {
     color: #b5bfc6;
   }
   &:before {
@@ -58,4 +58,4 @@ const StyledFeedItemReply = styled.button`
   }
 `
 
-export default FeedItemReply
+export default FeedReply

@@ -9,23 +9,23 @@ type Props = {
   data: Post
 }
 
-const FeedItemModal: VFC<Props> = ({ setModalOpen, data }) => {
+const FeedModal: VFC<Props> = ({ setModalOpen, data }) => {
   return (
-    <StyledFeedItemModal>
-      <div className="feed-item-reply__modal">
-        <div className="feed-item-reply__modal-inner">
+    <StyledFeedModal>
+      <div className="feed-modal__modal">
+        <div className="feed-modal__modal-inner">
           <button onClick={() => setModalOpen(false)}>
             <img src={close} alt="閉じる" />
           </button>
           <FeedItem {...data} modal />
         </div>
       </div>
-    </StyledFeedItemModal>
+    </StyledFeedModal>
   )
 }
 
-const StyledFeedItemModal = styled.div`
-  .feed-item-reply__modal {
+const StyledFeedModal = styled.div`
+  .feed-modal__modal {
     position: absolute;
     z-index: 100;
     top: 55px;
@@ -34,13 +34,13 @@ const StyledFeedItemModal = styled.div`
     background-color: #fff;
     border: 1px solid #b5bfc6;
     padding: 16px;
-    & .feed-item-reply__modal {
+    & & {
       width: calc(100% + 36px);
       left: -16px;
       right: -16px;
     }
   }
-  .feed-item-reply__modal-inner {
+  .feed-modal__modal-inner {
     position: relative;
     > button {
       position: absolute;
@@ -55,4 +55,4 @@ const StyledFeedItemModal = styled.div`
   }
 `
 
-export default FeedItemModal
+export default FeedModal
