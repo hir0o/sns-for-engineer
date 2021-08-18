@@ -24,7 +24,7 @@ const Top: VFC = () => {
     SetIsSending(true)
     try {
       await post<{ id: string }>(
-        'https://versatileapi.herokuapp.com/api/user/create_user',
+        'https://versatileapi.herokuapp.com/api/text',
         data
       )
       setValue('text', '')
@@ -60,10 +60,12 @@ const StyledTop = styled.div`
     box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
     padding: 16px;
     border-radius: 5px;
+    background-color: #fff;
   }
   .top__textarea {
     padding: 8px;
     width: 100%;
+    border: 1px solid #f2f5f9;
   }
   .button__container {
     display: flex;

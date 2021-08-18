@@ -7,6 +7,7 @@ export const post = async <R extends object>(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: 'HelloWorld',
       },
       body: JSON.stringify(obj),
     }).then((res) => res.json())

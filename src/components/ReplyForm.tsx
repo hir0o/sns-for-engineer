@@ -3,29 +3,30 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import close from '../assets/img/close.svg'
 import loading from '../assets/img/loading.svg'
+import { post } from '../lib/post'
 
 type Props = {
   closeUp: () => void
+  id: string
 }
 
 type FormValues = {
   text: string
 }
 
-const ReplyFOrm: VFC<Props> = ({ closeUp }) => {
+const ReplyFOrm: VFC<Props> = ({ closeUp, id }) => {
   const { register, handleSubmit, setValue } = useForm()
   const [isSending, SetIsSending] = useState(false)
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     SetIsSending(true)
     try {
-      console.log(data)
       await new Promise((resolve) => setTimeout(resolve, 500))
+      await post<{ id: string }>(
+        'https://versatileapi.herokuapp.com/api/text',
+        { ...data, in_reply_to_text_id: id }
+      )
 
-      // await post<{ id: string }>(
-      //   'https://versatileapi.herokuapp.com/api/user/create_user',
-      //   data
-      // )
       setValue('text', '')
     } catch (e) {
       alert('送信に失敗しました。')

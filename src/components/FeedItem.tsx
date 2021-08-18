@@ -61,7 +61,7 @@ const FeedItem: VFC<Prps> = ({
               </button>
             </div>
           )}
-          {isReply && <ReplyForm closeUp={() => setIsReply(false)} />}
+          {isReply && <ReplyForm closeUp={() => setIsReply(false)} id={id} />}
         </div>
       </div>
     </StyledFeedItem>

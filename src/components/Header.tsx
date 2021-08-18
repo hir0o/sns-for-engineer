@@ -17,12 +17,13 @@ const Header: VFC = () => {
 }
 
 const StyledHeader = styled.header`
+  box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
+  background-color: #fff;
   .header__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
 `
 
 export default Header
