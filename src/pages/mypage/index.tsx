@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import useIp from '../../hooks/useIp'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { User } from '../../types'
+import replaceToHtml from '../../lib/replacer'
 
 type SingleUser = Pick<User, 'name' | 'description' | 'id'>
 
@@ -30,12 +31,16 @@ const MyPage: VFC = () => {
             <p>{user?.id}</p>
           </div>
           <div className="my-page__row">
-            <p>name</p>
+            <p>ユーザー名</p>
             <p>{user?.name}</p>
           </div>
           <div className="my-page__row">
-            <p>description</p>
-            <p>{user?.description}</p>
+            <p>自己紹介</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: replaceToHtml(user?.description ?? ''),
+              }}
+            />
           </div>
         </div>
       </MyPageContents>

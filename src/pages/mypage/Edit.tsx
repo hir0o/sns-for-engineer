@@ -55,8 +55,7 @@ const Edit: VFC = () => {
           </div>
           <div className="edit__form-group">
             <label htmlFor="description">自己紹介</label>
-            <input
-              type="text"
+            <textarea
               id="description"
               defaultValue={user?.description ?? ''}
               {...register('description')}
