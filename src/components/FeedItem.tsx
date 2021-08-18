@@ -7,13 +7,21 @@ import { useUser } from '../hooks/useUser'
 import ProfileImage from './ProfileImage'
 import FeedItemReply from './FeedItemReply'
 
-type Prps = Post
+type Prps = Post & {
+  modal?: boolean
+}
 
-const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
+const FeedItem: VFC<Prps> = ({
+  id,
+  text,
+  _user_id,
+  in_reply_to_text_id,
+  modal = false,
+}) => {
   const user = useUser(_user_id)
 
   return (
-    <StyledFeedItem id={id}>
+    <StyledFeedItem id={id} className={modal ? 'feed-item--modal' : ''}>
       <div className="feed-item__header">
         <ProfileImage
           className="feed-item__user-img"
@@ -32,7 +40,6 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
         </div>
       </div>
       <div className="feed-item__content">
-        <div className="feed-item__content-space" />
         <div className="feed-item__text">
           {in_reply_to_text_id && (
             <FeedItemReply replyId={in_reply_to_text_id} />
@@ -42,6 +49,7 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
               __html: replaceToHtml(text),
             }}
           />
+          {!modal && <button className="feed-item__reply-button">返信</button>}
         </div>
       </div>
     </StyledFeedItem>
@@ -51,6 +59,10 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
 const StyledFeedItem = styled.div`
   padding-bottom: 12px;
   border-bottom: 1px solid #d8e0e3;
+  position: relative;
+  &.feed-item--modal {
+    border: none;
+  }
   .feed-item__header {
     display: flex;
     justify-content: space-between;
@@ -86,6 +98,10 @@ const StyledFeedItem = styled.div`
     width: 100%;
     margin-top: 12px;
     word-break: break-all;
+  }
+  .feed-item__reply-button {
+    background-color: transparent;
+    color: #5e5e5e;
   }
 `
 
