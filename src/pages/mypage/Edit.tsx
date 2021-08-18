@@ -1,52 +1,55 @@
 import React, { useCallback, useState, VFC } from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import { cache } from 'swr'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { SingleUser } from '../../types'
 
+type FormValues = {
+  name: string
+  description: string
+}
+
 const Edit: VFC = () => {
   const history = useHistory()
+  const { register, handleSubmit } = useForm()
   const [user, setUser] = useLocalStorage<SingleUser>('123user')
-  const [name, setName] = useState(user?.name ?? '')
-  const [description, setDescription] = useState(user?.description ?? '')
 
-  const hunleSubmit = useCallback(async () => {
-    const { id } = await fetch(
-      'https://versatileapi.herokuapp.com/api/user/create_user',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          description,
-        }),
-      }
-    ).then((res) => res.json())
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      const { id } = await fetch(
+        'https://versatileapi.herokuapp.com/api/user/create_user',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      ).then((res) => res.json())
+      setUser({ ...data, id })
+      history.push('/mypage')
+    } catch (e) {
+      alert('ユーザー情報の更新ができませんでした。')
+    }
+  }
 
-    setUser({ name, description, id })
-    history.push('/mypage')
-  }, [name, description])
   return (
     <StyledEdit>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          hunleSubmit()
-        }}
-      >
-        送信
-      </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          defaultValue={user?.name ?? ''}
+          {...register('name')}
+        />
+        <input
+          type="text"
+          defaultValue={user?.description ?? ''}
+          {...register('description')}
+        />
+        <input type="submit" />
+      </form>
     </StyledEdit>
   )
 }
