@@ -1,6 +1,5 @@
-import React, { useCallback, VFC } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { VFC } from 'react'
+import MyPageContents from '../../components/MyPageContents'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import useIp from '../../hooks/useIp'
@@ -16,7 +15,7 @@ const MyPage: VFC = () => {
 
   return (
     <StyledMyPage>
-      <div className="my-page__contents">
+      <MyPageContents>
         <div className="mypage__header">
           <h2>ユーザー情報</h2>
           <Link to="/mypage/edit">編集</Link>
@@ -39,18 +38,12 @@ const MyPage: VFC = () => {
             <p>{user?.description}</p>
           </div>
         </div>
-      </div>
+      </MyPageContents>
     </StyledMyPage>
   )
 }
 
 const StyledMyPage = styled.div`
-  .my-page__contents {
-    padding: 32px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
-  }
   .my-page__inner {
   }
   .mypage__header {
