@@ -1,10 +1,10 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import replaceToHtml from '../lib/replacer'
-import { toSvg } from 'jdenticon'
 import { Post } from '../types'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
+import ProfileImage from './ProfileImage'
 
 type Prps = Pick<Post, 'id' | 'text' | '_user_id'>
 
@@ -14,11 +14,10 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id }) => {
   return (
     <StyledFeedItem>
       <div className="feed-item__header">
-        <div
+        <ProfileImage
           className="feed-item__user-img"
-          dangerouslySetInnerHTML={{
-            __html: toSvg(_user_id, 40),
-          }}
+          userId={_user_id}
+          size={40}
         />
         <div className="feed-item__user">
           <p className="feed-item__user-name">

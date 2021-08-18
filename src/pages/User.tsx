@@ -7,6 +7,7 @@ import { useUser } from '../hooks/useUser'
 import { Post } from '../types'
 import { toSvg } from 'jdenticon'
 import replaceToHtml from '../lib/replacer'
+import ProfileImage from '../components/ProfileImage'
 
 const User: VFC = () => {
   const { userId } = useParams<{ userId: string }>()
@@ -20,12 +21,7 @@ const User: VFC = () => {
   return (
     <StyledUser>
       <div className="user__header">
-        <div
-          className="user__img"
-          dangerouslySetInnerHTML={{
-            __html: toSvg(userId, 120),
-          }}
-        />
+        <ProfileImage className="user__img" userId={userId} size={120} />
         <div className="user__text">
           <h2>{user.name}</h2>
           <p
