@@ -64,6 +64,7 @@ const StyledReplyForm = styled.div`
   padding: 32px 16px 16px;
   border-radius: 5px;
   position: relative;
+  background-color: #fff;
   .reply__close-button {
     position: absolute;
     top: 8px;
@@ -76,6 +77,8 @@ const StyledReplyForm = styled.div`
   .reply__textarea {
     padding: 8px;
     width: 100%;
+    border: 1px solid #f2f5f9;
+    background-color: #f2f5f9;
   }
   .reply__button-container {
     text-align: right;

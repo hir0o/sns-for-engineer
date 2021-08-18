@@ -66,6 +66,7 @@ const StyledTop = styled.div`
     padding: 8px;
     width: 100%;
     border: 1px solid #f2f5f9;
+    background-color: #f2f5f9;
   }
   .button__container {
     display: flex;
