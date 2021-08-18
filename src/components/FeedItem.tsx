@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { VFC, useState } from 'react'
 import styled from 'styled-components'
 import replaceToHtml from '../lib/replacer'
 import { Post } from '../types'
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 import ProfileImage from './ProfileImage'
 import FeedItemReply from './FeedReply'
+import ReplyForm from './ReplyForm'
 
 type Prps = Post & {
   modal?: boolean
@@ -19,6 +20,7 @@ const FeedItem: VFC<Prps> = ({
   modal = false,
 }) => {
   const user = useUser(_user_id)
+  const [isReply, setIsReply] = useState(false)
 
   return (
     <StyledFeedItem id={id} className={modal ? 'feed-item--modal' : ''}>
@@ -49,7 +51,17 @@ const FeedItem: VFC<Prps> = ({
               __html: replaceToHtml(text),
             }}
           />
-          {!modal && <button className="feed-item__reply-button">返信</button>}
+          {!modal && !isReply && (
+            <div>
+              <button
+                className="feed-item__reply-button"
+                onClick={() => setIsReply(true)}
+              >
+                返信
+              </button>
+            </div>
+          )}
+          {isReply && <ReplyForm closeUp={() => setIsReply(false)} />}
         </div>
       </div>
     </StyledFeedItem>
@@ -98,6 +110,9 @@ const StyledFeedItem = styled.div`
     width: 100%;
     margin-top: 12px;
     word-break: break-all;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .feed-item__reply-button {
     background-color: transparent;

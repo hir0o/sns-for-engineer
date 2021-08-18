@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Feed from '../components/Feed'
 import { useFetch } from '../hooks/useFetch'
 import useLocalStorage from '../hooks/useLocalStorage'
+import { post } from '../lib/post'
 import { Post, SingleUser } from '../types'
 
 type FormValues = {
@@ -22,12 +23,10 @@ const Top: VFC = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     SetIsSending(true)
     try {
-      console.log(data)
-
-      // await post<{ id: string }>(
-      //   'https://versatileapi.herokuapp.com/api/user/create_user',
-      //   data
-      // )
+      await post<{ id: string }>(
+        'https://versatileapi.herokuapp.com/api/user/create_user',
+        data
+      )
       setValue('text', '')
     } catch (e) {
       alert('送信に失敗しました。')
@@ -71,7 +70,8 @@ const StyledTop = styled.div`
     justify-content: flex-end;
     > button {
       background-color: #111;
-      padding: 0.2em 1em;
+      font-size: 13px;
+      padding: 3px 12px;
       color: #fff;
     }
   }
