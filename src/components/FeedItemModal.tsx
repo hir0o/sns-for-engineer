@@ -48,6 +48,7 @@ const StyledFeedItemModal = styled.div`
       right: 0;
       z-index: 9999;
       background-color: transparent;
+      cursor: pointer;
       > img {
         width: 15px;
       }
