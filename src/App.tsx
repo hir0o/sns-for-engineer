@@ -21,6 +21,7 @@ const App: VFC = () => {
       tmpUsers[item.id] = {
         name: item.name,
         description: item.description,
+        id: item.id,
       }
     })
     setUsers(tmpUsers)
