@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Feed from '../components/Feed'
 import { useFetch } from '../hooks/useFetch'
 import useLocalStorage from '../hooks/useLocalStorage'
+import { post } from '../lib/post'
 import { Post, SingleUser } from '../types'
 
 type FormValues = {
@@ -12,7 +13,7 @@ type FormValues = {
 
 const Top: VFC = () => {
   const { data, error, isValidating } = useFetch<Post[]>(
-    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=20'
+    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=50'
   )
 
   const { register, handleSubmit, setValue } = useForm()
@@ -22,12 +23,10 @@ const Top: VFC = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     SetIsSending(true)
     try {
-      console.log(data)
-
-      // await post<{ id: string }>(
-      //   'https://versatileapi.herokuapp.com/api/user/create_user',
-      //   data
-      // )
+      await post<{ id: string }>(
+        'https://versatileapi.herokuapp.com/api/text',
+        data
+      )
       setValue('text', '')
     } catch (e) {
       alert('送信に失敗しました。')
@@ -61,17 +60,21 @@ const StyledTop = styled.div`
     box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
     padding: 16px;
     border-radius: 5px;
+    background-color: #fff;
   }
   .top__textarea {
     padding: 8px;
     width: 100%;
+    border: 1px solid #f2f5f9;
+    background-color: #f2f5f9;
   }
   .button__container {
     display: flex;
     justify-content: flex-end;
     > button {
       background-color: #111;
-      padding: 0.2em 1em;
+      font-size: 13px;
+      padding: 3px 12px;
       color: #fff;
     }
   }

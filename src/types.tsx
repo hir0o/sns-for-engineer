@@ -7,6 +7,7 @@ type Common = {
 export type Post = {
   id: string
   text: string
+  in_reply_to_text_id?: string
 } & Common
 
 export type User = {
