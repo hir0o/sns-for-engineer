@@ -6,6 +6,7 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import { SingleUser } from '../../types'
 import MyPageContents from '../../components/MyPageContents'
 import { useState } from 'react'
+import loading from '../../assets/img/loading.svg'
 
 type FormValues = {
   name: string
@@ -61,7 +62,10 @@ const Edit: VFC = () => {
               {...register('description')}
             />
           </div>
-          <input type="submit" value={isSending ? '送信中...' : '送信'} />
+          <button className={`edit__form-submit ${isSending && 'sending'}`}>
+            <img src={loading} alt="" />
+            <p>送信</p>
+          </button>
         </form>
       </MyPageContents>
     </StyledEdit>
@@ -74,13 +78,32 @@ const StyledEdit = styled.div`
     grid-template-columns: 1fr;
     gap: 12px;
     justify-items: center;
-    > input[type='submit'] {
-      margin-top: 16px;
-      width: 100px;
-      background-color: #111111;
-      color: #fff;
-      font-size: 1.1rem;
-      padding: 0.5em 1.2em;
+  }
+  .edit__form-submit {
+    margin-top: 16px;
+    width: 100px;
+    background-color: #111111;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0.5em 1.2em;
+    position: relative;
+    > img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+    > p {
+      opacity: 1;
+    }
+    &.sending {
+      > img {
+        opacity: 1;
+      }
+      > p {
+        opacity: 0;
+      }
     }
   }
   .edit__form-group {
