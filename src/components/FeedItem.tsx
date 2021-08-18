@@ -13,7 +13,7 @@ const FeedItem: VFC<Prps> = ({ id, text, _user_id, in_reply_to_text_id }) => {
   const user = useUser(_user_id)
 
   return (
-    <StyledFeedItem>
+    <StyledFeedItem id={id}>
       <div className="feed-item__header">
         <ProfileImage
           className="feed-item__user-img"

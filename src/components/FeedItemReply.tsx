@@ -11,10 +11,15 @@ const FeedItemReply: VFC<Props> = ({ replyId }) => {
   const { data } = useFetch<Post>(
     `https://versatileapi.herokuapp.com/api/text/${replyId}`
   )
-  return <StyledFeedItemReply>{data?.text}</StyledFeedItemReply>
+  return (
+    <StyledFeedItemReply href={`#${replyId}`}>
+      <p>{data?.text}</p>
+    </StyledFeedItemReply>
+  )
 }
 
-const StyledFeedItemReply = styled.div`
+const StyledFeedItemReply = styled.a`
+  display: inline-block;
   color: #b5bfc6;
   padding-left: 16px;
   font-size: 12px;
