@@ -19,7 +19,8 @@ export type Users = {
   [id: string]: {
     description: string
     name: string
+    id: string
   }
 }
 
-export type SingleUser = Pick<User, 'name' | 'description'>
+export type SingleUser = Pick<User, 'name' | 'description' | 'id'>

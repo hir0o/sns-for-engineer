@@ -1,5 +1,6 @@
 body,
 html {
+  color: #333;
   background-color: #f9fafc;
 }
 
@@ -20,4 +21,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input,
+textarea,
+button {
+  outline: 0;
+  border: none;
+  resize: none;
 }
