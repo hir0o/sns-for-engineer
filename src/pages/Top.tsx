@@ -44,6 +44,9 @@ const Top: VFC = () => {
           {...register('text')}
           placeholder="今何してる？"
         />
+        <div className="button__container">
+          <button>送信</button>
+        </div>
       </form>
       <Feed data={data} isValidating={isValidating} />
     </StyledTop>
@@ -51,8 +54,26 @@ const Top: VFC = () => {
 }
 
 const StyledTop = styled.div`
-  .top__from {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  .top__form {
+    box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
+    padding: 16px;
+    border-radius: 5px;
+  }
+  .top__textarea {
+    padding: 8px;
     width: 100%;
+  }
+  .button__container {
+    display: flex;
+    justify-content: flex-end;
+    > button {
+      background-color: #111;
+      padding: 0.2em 1em;
+      color: #fff;
+    }
   }
 `
 
