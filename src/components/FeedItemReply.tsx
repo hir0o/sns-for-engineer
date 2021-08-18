@@ -32,8 +32,11 @@ const FeedItemReply: VFC<Props> = ({ replyId }) => {
   )
 }
 
-const StyledFeedItemReply = styled.div`
+const StyledFeedItemReply = styled.button`
   width: 100%;
+  background-color: transparent;
+  text-align: left;
+  display: block;
   padding-left: 16px;
   font-size: 12px;
   position: relative;
