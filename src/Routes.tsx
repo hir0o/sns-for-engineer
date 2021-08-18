@@ -1,7 +1,7 @@
 import React, { VFC } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Top from './pages/Top'
-import MyPage from './pages/MyPage'
+import MyPage from './pages/mypage'
 import User from './pages/User'
 
 const Routes: VFC = () => {
