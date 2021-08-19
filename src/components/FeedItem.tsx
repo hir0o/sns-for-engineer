@@ -1,4 +1,4 @@
-import React, { VFC, useState } from 'react'
+import React, { VFC, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import replaceToHtml from '../lib/replacer'
 import { Post } from '../types'
@@ -7,6 +7,10 @@ import { useUser } from '../hooks/useUser'
 import ProfileImage from './ProfileImage'
 import FeedItemReply from './FeedReply'
 import ReplyForm from './ReplyForm'
+import dayjs from 'dayjs'
+import ja from 'dayjs/locale/ja'
+import { getOffsetString } from '../lib/offsetString'
+import { useMemo } from 'react'
 
 type Prps = Post & {
   modal?: boolean
@@ -17,10 +21,14 @@ const FeedItem: VFC<Prps> = ({
   text,
   _user_id,
   in_reply_to_text_id,
+  _created_at,
   modal = false,
 }) => {
   const user = useUser(_user_id)
   const [isReply, setIsReply] = useState(false)
+  const offsetString = useMemo(() => {
+    return getOffsetString(new Date(), new Date(dayjs(_created_at).toDate()))
+  }, [])
 
   return (
     <StyledFeedItem id={id} className={modal ? 'feed-item--modal' : ''}>
@@ -38,7 +46,7 @@ const FeedItem: VFC<Prps> = ({
               '未登録'
             )}
           </p>
-          <p className="feed-item__time">3分前</p>
+          <p className="feed-item__time">{offsetString}</p>
         </div>
       </div>
       <div className="feed-item__content">

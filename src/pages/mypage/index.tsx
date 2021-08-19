@@ -6,6 +6,7 @@ import useIp from '../../hooks/useIp'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { User } from '../../types'
 import replaceToHtml from '../../lib/replacer'
+import MyPageRow from '../../components/MypageRow'
 
 type SingleUser = Pick<User, 'name' | 'description' | 'id'>
 
@@ -22,26 +23,16 @@ const MyPage: VFC = () => {
           <Link to="/mypage/edit">編集</Link>
         </div>
         <div className="my-page__inner">
-          <div className="my-page__row">
-            <p>IP</p>
-            <p>{ip}</p>
-          </div>
-          <div className="my-page__row">
-            <p>ID</p>
-            <p>{user?.id}</p>
-          </div>
-          <div className="my-page__row">
-            <p>ユーザー名</p>
-            <p>{user?.name}</p>
-          </div>
-          <div className="my-page__row">
-            <p>自己紹介</p>
+          <MyPageRow title="IP" text={ip} />
+          <MyPageRow title="ID" text={user?.id} />
+          <MyPageRow title="ユーザー名" text={user?.name} />
+          <MyPageRow title="自己紹介" text={user?.name}>
             <p
               dangerouslySetInnerHTML={{
                 __html: replaceToHtml(user?.description ?? ''),
               }}
             />
-          </div>
+          </MyPageRow>
         </div>
       </MyPageContents>
     </StyledMyPage>

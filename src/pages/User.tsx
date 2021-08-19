@@ -5,7 +5,6 @@ import Feed from '../components/Feed'
 import { useFetch } from '../hooks/useFetch'
 import { useUser } from '../hooks/useUser'
 import { Post } from '../types'
-import { toSvg } from 'jdenticon'
 import replaceToHtml from '../lib/replacer'
 import ProfileImage from '../components/ProfileImage'
 
