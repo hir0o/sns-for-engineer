@@ -1,6 +1,6 @@
 import React from 'react'
 import { toSvg } from 'jdenticon'
-import { VFC } from 'react'
+import { VFC, memo } from 'react'
 
 type Props = {
   className?: string
@@ -19,4 +19,5 @@ const ProfileImage: VFC<Props> = ({ className, userId, size }) => {
   )
 }
 
-export default ProfileImage
+export default memo(ProfileImage)
+
