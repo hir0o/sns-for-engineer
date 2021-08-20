@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { VFC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { useSWRInfinite } from 'swr'
@@ -6,6 +6,7 @@ import Feed from '../components/Feed'
 import { post } from '../lib/post'
 import { Post } from '../types'
 import { fetcher } from '../hooks/useFetch'
+import loadingIcon from "../assets/img/loading-b.svg"
 
 type FormValues = {
   text: string
@@ -13,14 +14,14 @@ type FormValues = {
 
 const getKey = (pageIndex: number, previousPageData: any) => {
   if (previousPageData && !previousPageData.length) return null
-  return `https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$skip=${
-    pageIndex * 20
-  }&$limit=${20}`
+  return `https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$skip=${pageIndex * 20
+    }&$limit=${20}`
 }
 
 const Top: VFC = () => {
   const { data, size, setSize } = useSWRInfinite<Post[]>(getKey, fetcher)
   const { register, handleSubmit, setValue } = useForm()
+  const [loading, setLoading] = useState(false)
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
@@ -51,13 +52,15 @@ const Top: VFC = () => {
         <Feed data={d} isValidating={true} key={d[0].id + 'data'} />
       ))}
       <button
-        onClick={() => {
-          console.log({ size })
-
-          setSize(size + 1)
+        onClick={async () => {
+          setLoading(true)
+          await setSize(size + 1)
+          setLoading(false)
         }}
+        className={`top__more-button ${loading ? 'loading' : ''}`}
       >
-        もっと読み込む
+        <p>もっと読み込む</p>
+        <img src={loadingIcon} alt="" />
       </button>
     </StyledTop>
   )
@@ -88,6 +91,23 @@ const StyledTop = styled.div`
       font-size: 13px;
       padding: 3px 12px;
       color: #fff;
+    }
+  }
+  .top__more-button {
+    text-align: center;
+    > p {
+      display: block;
+    }
+    > img {
+      display: none;
+    }
+   &.loading {
+     > p {
+       display: none;
+     }
+     > img {
+       display: inline;
+     }
     }
   }
 `
