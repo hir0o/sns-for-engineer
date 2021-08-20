@@ -1,4 +1,4 @@
-import React, { VFC, useState, useCallback } from 'react'
+import React, { VFC, useState, memo } from 'react'
 import styled from 'styled-components'
 import { Post } from '../types'
 import { Link } from 'react-router-dom'
@@ -127,4 +127,5 @@ const StyledFeedItem = styled.div`
   }
 `
 
-export default FeedItem
+export default memo(FeedItem)
+
