@@ -3,6 +3,11 @@ type Common = {
   _updated_at: string
   _user_id: string
 }
+type You = {
+  name: string
+  age: string
+  friend: boolean
+}
 
 export type Post = {
   id: string
