@@ -67,6 +67,7 @@ const StyledTop = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
+  padding-bottom: 32px;
   .top__form {
     box-shadow: 0 3px 25px rgba(77, 77, 99, 0.1);
     padding: 16px;
