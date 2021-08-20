@@ -1,27 +1,28 @@
-import React, { useState, VFC } from 'react'
+import React, { VFC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import styled from 'styled-components'
+import { useSWRInfinite } from 'swr'
 import Feed from '../components/Feed'
-import { useFetch } from '../hooks/useFetch'
-import useLocalStorage from '../hooks/useLocalStorage'
 import { post } from '../lib/post'
-import { Post, SingleUser } from '../types'
+import { Post } from '../types'
+import { fetcher } from '../hooks/useFetch'
 
 type FormValues = {
   text: string
 }
 
-const Top: VFC = () => {
-  const { data, error, isValidating } = useFetch<Post[]>(
-    'https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$limit=50'
-  )
+const getKey = (pageIndex: number, previousPageData: any) => {
+  if (previousPageData && !previousPageData.length) return null
+  return `https://versatileapi.herokuapp.com/api/text/all?$orderby=_created_at desc&$skip=${
+    pageIndex * 20
+  }&$limit=${20}`
+}
 
+const Top: VFC = () => {
+  const { data, size, setSize } = useSWRInfinite<Post[]>(getKey, fetcher)
   const { register, handleSubmit, setValue } = useForm()
-  const [isSending, SetIsSending] = useState(false)
-  const [user, _] = useLocalStorage<SingleUser>('123user')
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    SetIsSending(true)
     try {
       await post<{ id: string }>(
         'https://versatileapi.herokuapp.com/api/text',
@@ -31,7 +32,6 @@ const Top: VFC = () => {
     } catch (e) {
       alert('送信に失敗しました。')
     }
-    SetIsSending(false)
   }
 
   return (
@@ -43,11 +43,22 @@ const Top: VFC = () => {
           {...register('text')}
           placeholder="今何してる？"
         />
-        <div className="button__container">
+        <div className="top__button-container">
           <button>送信</button>
         </div>
       </form>
-      <Feed data={data} isValidating={isValidating} />
+      {data?.map((d) => (
+        <Feed data={d} isValidating={true} key={d[0].id + 'data'} />
+      ))}
+      <button
+        onClick={() => {
+          console.log({ size })
+
+          setSize(size + 1)
+        }}
+      >
+        もっと読み込む
+      </button>
     </StyledTop>
   )
 }
@@ -68,7 +79,7 @@ const StyledTop = styled.div`
     border: 1px solid #f2f5f9;
     background-color: #f2f5f9;
   }
-  .button__container {
+  .top__button-container {
     display: flex;
     justify-content: flex-end;
     > button {
