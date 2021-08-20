@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Post } from '../types'
 import FeedItem from './FeedItem'
 
+// ここはcommitしたい
+//
 type Props = {
   data: Post[] | undefined
   isValidating: boolean
