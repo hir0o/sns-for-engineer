@@ -3,7 +3,7 @@ import { toSvg } from 'jdenticon'
 import { VFC } from 'react'
 
 type Props = {
-  className: string
+  className?: string
   userId: string
   size: number
 }
@@ -11,7 +11,7 @@ type Props = {
 const ProfileImage: VFC<Props> = ({ className, userId, size }) => {
   return (
     <div
-      className={className}
+      className={className ?? ''}
       dangerouslySetInnerHTML={{
         __html: toSvg(userId, size),
       }}
