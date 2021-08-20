@@ -6,7 +6,7 @@ import useIp from '../../hooks/useIp'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { User } from '../../types'
 import replaceToHtml from '../../lib/replacer'
-import MyPageRow from '../../components/MypageRow'
+import MyPageRow from '../../components/MyPageRow'
 
 type SingleUser = Pick<User, 'name' | 'description' | 'id'>
 

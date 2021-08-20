@@ -1,7 +1,7 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import ContentContainer from './ContentContainer'
-import { Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Header: VFC = () => {
   return (

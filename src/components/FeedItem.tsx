@@ -1,6 +1,5 @@
 import React, { VFC, useState, useCallback } from 'react'
 import styled from 'styled-components'
-import replaceToHtml from '../lib/replacer'
 import { Post } from '../types'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
@@ -8,9 +7,9 @@ import ProfileImage from './ProfileImage'
 import FeedItemReply from './FeedReply'
 import ReplyForm from './ReplyForm'
 import dayjs from 'dayjs'
-import ja from 'dayjs/locale/ja'
 import { getOffsetString } from '../lib/offsetString'
 import { useMemo } from 'react'
+import replaceToHtml from '../lib/replacer'
 
 type Prps = Post & {
   modal?: boolean
